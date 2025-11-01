@@ -1,0 +1,23 @@
+.header_layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(
+        200px,
+        1fr
+    ));
+}
+.header_column {
+    display: grid;
+    place-items: center;
+}
+.header_column-buttons {
+    display: grid;
+    grid-auto-flow: column;
+}
+.header-layout_button {
+}
+
+.header_column .header_util {
+    display: grid;
+    grid-auto-flow: column;
+    place-items: center;
+}
