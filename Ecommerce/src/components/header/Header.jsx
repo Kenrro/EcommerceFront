@@ -1,5 +1,4 @@
-import { Cart } from "./Cart"
-import { UserButton } from "./UserButton"
+import { MenuHeader } from "../menus/MenuHeader"
 import "./header.css"
 
 export const Header = () => {
@@ -10,15 +9,7 @@ export const Header = () => {
             <h1>Ecomerce</h1>
         </div>
         <div className="header_column header_column-buttons">
-            <div className="header_util">
-                <input type="text" />
-            </div>
-            <div className="header_util">
-                <Cart></Cart>
-            </div>
-            <div className="header_util">
-                <UserButton></UserButton>
-            </div>
+            <MenuHeader></MenuHeader>
         </div>
     </header>
     )

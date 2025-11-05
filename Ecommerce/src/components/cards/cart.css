@@ -1,0 +1,15 @@
+.cart {
+    width: 200px;
+    position: absolute;
+    top: 0;
+    right: -100%;
+    opacity: 0;
+    background-color: #2f9;
+    min-height: 100vh;
+    transition-duration: 0.7s;
+}
+.cart--open {
+    right: 0;
+    opacity: 1;
+}
+

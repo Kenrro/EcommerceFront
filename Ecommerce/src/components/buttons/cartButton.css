@@ -1,0 +1,12 @@
+body {
+    overflow-x: hidden;
+}
+.wrap_button {
+    display: grid;
+    grid-auto-flow: column;
+    place-items: center;
+    transition-duration: 0.7s;
+}
+.wrap_button:hover {
+    transform: scale(1.1);
+}

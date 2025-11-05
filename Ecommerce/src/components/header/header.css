@@ -4,6 +4,9 @@
         200px,
         1fr
     ));
+    background-color: #f92;
+    color: #fff;
+    min-height: 50px;
 }
 .header_column {
     display: grid;

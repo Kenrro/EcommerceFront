@@ -1,6 +1,7 @@
+import { Products } from "./Products"
+
 export const Home = () => {
     return(
-        <header>
-        </header>
+        <Products></Products>
     )
 }

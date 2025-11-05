@@ -2,15 +2,38 @@ import { useEffect, useState } from "react";
 import "./auth.css"
 import { AuthForm } from "../form/AuthForm";
 import { AUTH_URI } from "../../api/Api";
+import { Navigate, useNavigate } from "react-router-dom";
+import { useFetch } from "../../hooks/useFetch";
+import { use } from "react";
 
 export const Auth = () => {
     
     const [page, setPage] = useState(false);
-    const onHandleSubmit = (e, data) => {
+    const {data, loading, error, refetch} = useFetch(
+        {   
+            url: `${AUTH_URI}${page?"register":"login"}`,
+            autoFetch: false,
+            method: "POST",
+            authorization: false
+        }
+    )
+
+    const onHandleSubmit = (e, formData) => {
         e.preventDefault()
         
-        getAuth(data);
+        refetch(formData)
     }
+    const navigate = useNavigate()
+    useEffect(()=> {
+        if(data !== null){
+            localStorage.setItem("user-token", data.token)
+            navigate("/", {replace:true});
+            window.location.reload()
+        }
+        if(error) {
+            console.error(error)
+        }
+    }, [data])
     const formEntitys = [
         {username:"", password:""},
         {username:"", password:"", firstname:"", lastname:"", role:"ROLE_USER"} // Por defecto se crean usuarios normales
@@ -26,29 +49,6 @@ export const Auth = () => {
             {name:"firstname", type:"text", placeholder:"Firstname"},
             {name:"lastname", type:"text", placeholder:"Lastname"}
         ]
-    }
-
-    async function getAuth(formData) {
-            try {const response = await fetch(`${AUTH_URI}${page?"register":"login"}`, {
-                method: "POST",
-                headers: {
-                    "Content-type": "application/json",
-                },
-                body: JSON.stringify(formData),
-                });
-                const data = await response.json();
-                if(!response.ok) {
-                    alert(data.Error.description)
-                    throw new Error(data.Error)
-                }
-
-                console.log("Usuario creado:", data)
-                localStorage.setItem("user-token", data.token)
-                console.log(localStorage.getItem("user-token"))}
-            catch (err) {
-                console.error(err);
-            }
-            
     }
 
     return(

@@ -1,0 +1,11 @@
+.wrap-products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(
+        100px,
+        250px
+    ));
+    gap: 5px;
+    padding: 0.5em;
+    justify-items: start;
+    align-items: start;
+}
